@@ -1,0 +1,9 @@
+{
+  "name": "node-gulp-bower-build",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "jquery.uniform": "~2.1.2"
+  }
+}

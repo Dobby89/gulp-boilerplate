@@ -1,2 +1,9 @@
-node-gulp-bower-build
-=====================
+#Boilerplate for Gulp
+
+## Installation
+
+```
+$ gem install compass
+$ npm install
+$ bower install
+```

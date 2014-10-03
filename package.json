@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "debowerify": "^0.7.1",
+    "gulp": "^3.8.2",
+    "gulp-browserify": "^0.5.0",
+    "gulp-compass": "^1.1.9",
+    "gulp-concat": "^2.3.4",
+    "gulp-load-plugins": "^0.5.2",
+    "gulp-rimraf": "^0.1.0",
+    "gulp-size": "^0.4.0",
+    "require-dir": "^0.1.0",
+    "rimraf": "^2.2.8",
+    "install": "^0.1.7",
+    "gulp-autoprefixer": "0.0.8"
+  },
+  "devDependencies": {
+    "browser-sync": "^1.1.1",
+    "gulp-rename": "^1.2.0",
+    "gulp-consolidate": "^0.1.2",
+    "gulp-iconfont": "^0.1.2",
+    "lodash": "^2.4.1",
+    "gulp-notify": "^1.4.0",
+    "gulp-imagemin": "^0.6.2",
+    "imagemin-pngcrush": "^0.1.0",
+    "gulp-debug": "^1.0.0"
+  }
+}
