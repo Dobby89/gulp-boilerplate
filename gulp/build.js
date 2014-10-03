@@ -59,7 +59,9 @@ gulp.task('copyimages', function () {
 });
 
 /**
- * Compile website SASS
+ * Compile website Sass using compass
+ *
+ * Also uses autoprefixer, so no need for compass mixins
  *
  * Usage: gulp styles
  */
@@ -70,16 +72,48 @@ gulp.task('styles', function () {
       css: 'dist/styles',
       sass: 'styles',
       require: ['compass-normalize'],
-      import_path: '../bower_components', // so compass knows to look for files within the bower directory if we reference files
-      style: 'compressed',
+      import_path: '../bower_components', // so the compiler knows to look for scss files within the bower directory as well
+      logging  : false,
+      comments : false,
+      style: 'expanded', // e.g. compressed / expanded
       sourcemap: false
     }))
+    .pipe($.autoprefixer('last 20 version', 'safari 5', 'ie 8', 'ie 9', 'ff 17', 'opera 12.1', 'ios 6', 'android 4'))
     // catch any compilation errors and output to the console and a popup to stop the process needing to be restarted every time there's an error
     .on('error', $.notify.onError())
     .on('error', function (err) {
       console.log('Error:', err);
     })
-    .pipe($.size({title: 'main.css'}));
+    .pipe($.size({title: 'main.css'}))
+    .pipe(gulp.dest('static/dist/styles'));
+});
+
+/**
+ * Compile website Sass using gulp-sass
+ *
+ * Uses libsass, which is apparently ~10x faster than ruby!
+ *
+ * This means you don't need to install Ruby gems because this is a node/gulp implementation of the sass compiler.
+ *
+ * Also uses autoprefixer, so no need for compass mixins
+ *
+ * Usage: gulp styles-libsass
+ */
+gulp.task('styles-libsass', function () {
+  return gulp.src('static/styles/**/*.scss')
+    .pipe($.sass({
+      // See https://github.com/sass/node-sass for full list of parameter references
+      includePaths: ['./bower_components'],  // so the compiler knows to look for scss files within the bower directory as well
+      outputStyle: 'compressed', // 'nested' or 'compressed' ('expanded' and 'compact' are not currently supported by libsass)
+      sourceComments: 'none' // 'none', 'normal' or 'map'
+    }))
+    .on('error', $.notify.onError())
+    .on('error', function (err) {
+      console.log('Error:', err);
+    })
+    .pipe($.autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'ff 17', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe($.size({title: 'main.css'}))
+    .pipe(gulp.dest('static/dist/styles'));
 });
 
 /**
@@ -143,7 +177,7 @@ gulp.task('generatefonts', function(){
       codepoints.forEach(function(glyph, idx, arr) {
         arr[idx].codepoint = glyph.codepoint.toString(16); // automatically assign a unicode value to the icon
       });
-      gulp.src('static/styles/branding/_iconfont-template.scss') // a template scss file, used to generate the scss code for all the icons
+      gulp.src('static/styles/fonts/_template.scss') // a template scss file, used to generate the scss code for all the icons
         .pipe($.consolidate('lodash', {
           glyphs: codepoints,
           fontName: options.fontName,
@@ -151,7 +185,7 @@ gulp.task('generatefonts', function(){
           className: classPrefix // what should the icon class be prefixed with? E.g.`[prefix]-chevron`
         }))
         .pipe($.rename(partialFileName)) // rename the generated scss filename, otherwise it inherits the filename of the template scss file
-        .pipe(gulp.dest('static/styles/branding/')); // directory to save the generated scss file (absolute path)
+        .pipe(gulp.dest('static/styles/fonts/')); // directory to save the generated scss file (absolute path)
     })
     .pipe(gulp.dest('static/fonts')); // where to save the generated font files (absolute path)
 });
