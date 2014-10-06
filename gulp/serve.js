@@ -7,11 +7,26 @@ function browserSyncInit(files, browser) {
   var browserSync = require('browser-sync');
   browser = browser === undefined ? 'default' : browser;
 
+  /**
+   * Uncomment whichever suits your needs
+   */
+
+  // Static files
   browserSync.init(files, {
-    proxy: '127.0.0.1:8000',
+    server: {
+      baseDir: "./"
+    },
     browser: browser,
     notify: false
   });
+
+  // or...
+
+//  browserSync.init(files, {
+//    proxy: '127.0.0.1:8000', // or something like "yourlocal.dev"
+//    browser: browser,
+//    notify: false
+//  });
 }
 
 /**
