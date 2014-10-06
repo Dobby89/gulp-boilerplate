@@ -71,7 +71,6 @@ gulp.task('styles', function () {
       project: path.join(__dirname, '../', 'static'),
       css: 'dist/styles',
       sass: 'styles',
-      require: ['compass-normalize'],
       import_path: '../bower_components', // so the compiler knows to look for scss files within the bower directory as well
       logging  : false,
       comments : false,
