@@ -1,1 +1,23 @@
+// bower components
 @import "normalize-scss/normalize";
+@import "susy/sass/susy";
+
+/* Changing Susy default global settings */
+$susy: (
+  columns: 12,
+  global-box-sizing: border-box
+);
+
+.wrap {
+    @include container(800px); // establish a layout context
+}
+
+/* Tells Susy there's 8 columns in the content */
+.content {
+    @include span(8);
+}
+
+/* Tells Susy there's 4 columns in the sidebar, and its the last item on the row. */
+.sidebar {
+    @include span(4 last);
+}

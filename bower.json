@@ -6,6 +6,7 @@
     "jquery": "~2.1.1",
     "jquery.uniform": "~2.1.2",
     "normalize-scss": "~3.0.1",
-    "html5shiv": "~3.7.2"
+    "html5shiv": "~3.7.2",
+    "susy": "~2.1.3"
   }
 }
