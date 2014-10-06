@@ -77,6 +77,11 @@ gulp.task('styles', function () {
       style: 'expanded', // e.g. compressed / expanded
       sourcemap: false
     }))
+    // catch any compilation errors and output to the console and a popup to stop the process needing to be restarted every time there's an error
+    .on('error', $.notify.onError())
+    .on('error', function (err) {
+      console.log('Error:', err);
+    })
     .pipe($.autoprefixer('last 20 version', 'safari 5', 'ie 8', 'ie 9', 'ff 17', 'opera 12.1', 'ios 6', 'android 4'))
     // catch any compilation errors and output to the console and a popup to stop the process needing to be restarted every time there's an error
     .on('error', $.notify.onError())
@@ -111,6 +116,10 @@ gulp.task('styles-libsass', function () {
       console.log('Error:', err);
     })
     .pipe($.autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'ff 17', 'opera 12.1', 'ios 6', 'android 4'))
+    .on('error', $.notify.onError())
+    .on('error', function (err) {
+      console.log('Error:', err);
+    })
     .pipe($.size({title: 'main.css'}))
     .pipe(gulp.dest('static/dist/styles'));
 });
