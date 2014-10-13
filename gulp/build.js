@@ -9,7 +9,8 @@ var $ = require('gulp-load-plugins')();
 /**
  * Build tasks
  *
- * Runs all of the tasks in this file from one command
+ * Runs all the build tasks in this file from one command.
+ * Doesn't include any tasks which should be run every now and then, e.g. `generatefonts`
  *
  * Usage: gulp build
  */

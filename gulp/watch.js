@@ -26,7 +26,7 @@ gulp.task('watch:styles', ['styles'], function () {
 });
 
 /**
- * Watch ONLY style files
+ * Watch ONLY script files
  *
  * Useful if you don't want to wait around
  *
