@@ -80,18 +80,10 @@ gulp.task('styles', function () {
       sourcemap: false
     }))
     // catch any compilation errors and output to the console and a popup to stop the process needing to be restarted every time there's an error
-    .on('error', $.notify.onError())
-    .on('error', function (err) {
-      console.log('Error:', err);
-      this.emit('end');
-    })
+    .on('error', errorAlert)
     .pipe($.autoprefixer('last 20 version', 'safari 5', 'ie 8', 'ie 9', 'ff 17', 'opera 12.1', 'ios 6', 'android 4'))
     // catch any compilation errors and output to the console and a popup to stop the process needing to be restarted every time there's an error
-    .on('error', $.notify.onError())
-    .on('error', function (err) {
-      console.log('Error:', err);
-      this.emit('end');
-    })
+    .on('error', errorAlert)
     .pipe($.size({title: 'main.css'}))
     .pipe(gulp.dest('static/dist/styles'));
 });
@@ -115,17 +107,9 @@ gulp.task('styles-libsass', function () {
       outputStyle: 'compressed', // 'nested' or 'compressed' ('expanded' and 'compact' are not currently supported by libsass)
       sourceComments: 'none' // 'none', 'normal' or 'map'
     }))
-    .on('error', $.notify.onError())
-    .on('error', function (err) {
-      console.log('Error:', err);
-      this.emit('end');
-    })
+    .on('error', errorAlert)
     .pipe($.autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'ff 17', 'opera 12.1', 'ios 6', 'android 4'))
-    .on('error', $.notify.onError())
-    .on('error', function (err) {
-      console.log('Error:', err);
-      this.emit('end');
-    })
+    .on('error', errorAlert)
     .pipe($.size({title: 'main.css'}))
     .pipe(gulp.dest('static/dist/styles'));
 });
@@ -151,11 +135,7 @@ gulp.task('scripts', function () {
       }
     }))
     // catch any compilation errors and output to the console and a popup to stop the process needing to be restarted every time there's an error
-    .on('error', $.notify.onError())
-    .on('error', function (err) {
-      console.log('Error:', err);
-      this.emit('end');
-    })
+    .on('error', errorAlert)
     .pipe(gulp.dest('static/dist/scripts'))
     .pipe($.size({title: 'main.js'}));
 });
@@ -204,3 +184,10 @@ gulp.task('generatefonts', function(){
     })
     .pipe(gulp.dest('static/fonts')); // where to save the generated font files (absolute path)
 });
+
+
+function errorAlert(error) {
+  $.notify.onError({title: "Gulp Error", message: "Check your terminal"})(error);
+  console.log('Error:', error);
+  this.emit("end");
+}
