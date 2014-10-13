@@ -76,7 +76,7 @@ gulp.task('styles', function () {
       import_path: '../bower_components', // so the compiler knows to look for scss files within the bower directory as well
       logging  : false,
       comments : false,
-      style: 'expanded', // e.g. compressed / expanded
+      style: 'expanded', // e.g. nested, expanded, compact, or compressed
       sourcemap: false
     }))
     // catch any compilation errors and output to the console and a popup to stop the process needing to be restarted every time there's an error
