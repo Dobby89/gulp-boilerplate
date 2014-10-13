@@ -1,0 +1,94 @@
+/**
+ * SUSY (gem install susy)
+ */
+//.container {
+//    @include container(960px);
+//}
+//
+//.gallery {
+//
+//    .item {
+//        @include gallery(2 of 4);
+//    }
+//}
+//
+//@include susy-breakpoint(500px, 12){
+//
+//    section {
+//        @include span(8);
+//    }
+//
+//    aside {
+//        @include span(4);
+//    }
+//}
+//
+//@include susy-breakpoint(800px, 12){
+//
+//    .gallery {
+//
+//        .item {
+//            @include gallery(2 of 6);
+//        }
+//    }
+//}
+
+
+/*
+ * JEET (bower install jeet)
+ */
+.container {
+    @include center(960px);
+}
+
+.gallery {
+    @include cf();
+    padding: 10px;
+
+    img {
+        display: block;
+    }
+
+    .item {
+        @include span(1/2);
+        padding: 10px;
+    }
+}
+
+@include breakpointEms(500){
+
+    section {
+        @include span(3/4);
+    }
+
+    aside {
+        @include span(1/4);
+    }
+}
+
+@include breakpointEms(800){
+
+    .gallery {
+
+        .item {
+            @include span(1/3);
+        }
+    }
+}
+
+
+
+/*
+ * FLINT (gem install flint-gs)
+ */
+//.container {
+//    @include _(container);
+//}
+//section {
+//    @include _(3);
+//    // background: $color__blue;
+//
+//    &:before { content: "1/3"; }
+//}
+
+

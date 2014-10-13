@@ -1,0 +1,210 @@
+/**
+ * Forms
+ *
+ * Global styling for all forms
+ */
+
+fieldset {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+// Form Rows
+.form-row {
+
+}
+
+.errorlist {
+
+
+    li {
+
+    }
+}
+
+// The errors which appear underneath a field which hasn't validated
+.field-error {
+
+}
+
+label {
+
+}
+
+// Placeholder styles for any form elements needing this.
+%input-styles {
+    background: #fff; // need something here otherwise it can't be extended
+}
+
+// Input styles
+input,
+textarea {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: checkbox;
+}
+
+input[type="radio"] {
+    -webkit-appearance: radio;
+}
+
+input[type="date"] {
+
+}
+
+input[type="search"] {
+    box-sizing: border-box; // Normalize resets it to `content-box` for some reason...
+}
+
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+input[type="email"],
+input[type="search"],
+input[type="number"],
+input[type="date"],
+textarea {
+    @extend %input-styles;
+
+    .form-row-error & {
+
+    }
+}
+
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+input[type="email"],
+input[type="search"],
+input[type="number"],
+input[type="date"]{
+
+    &[disabled],
+    &[readonly] {
+
+    }
+}
+
+textarea {
+    min-height: 120px;
+
+    &[disabled],
+    &[readonly] {
+
+    }
+}
+
+// Styles for jquery.uniform select boxes
+.selector {
+    position: relative;
+    cursor: pointer;
+
+    &.disabled {
+
+    }
+
+    .form-row-error & {
+
+    }
+
+    &:before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        display: block;
+    }
+
+    span {
+        width: 100%!important;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    select {
+        width: 100%;
+        border: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        cursor: pointer;
+    }
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+
+    + label {
+
+        &:before {
+
+        }
+    }
+
+    &:checked + label:before {
+
+    }
+}
+
+input[type="checkbox"] {
+
+    + label {
+
+        &:before {
+
+        }
+    }
+
+    &:checked + label:before {
+
+    }
+}
+
+input[type="radio"] {
+
+    + label {
+
+        &:before {
+
+        }
+    }
+
+    &:checked + label:after {
+
+    }
+}
+
+.button,
+input[type="submit"].button,
+%button {
+
+    &:active {
+
+    }
+
+    &:focus {
+
+    }
+}
+
+.form-row {
+
+    input[type="checkbox"],
+    input[type="radio"] {
+
+        + label {
+
+        }
+    }
+}

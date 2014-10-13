@@ -1,0 +1,76 @@
+// Susy default global settings
+//$susy: (
+//  columns: 4, // default is set to 8-columns
+//  global-box-sizing: border-box,
+//  debug: (image: show)
+//);
+
+//$susy: (
+//  math: static,
+//  columns: 4,
+//  column-width: 60px,
+//  gutters: 1 / 4
+//);
+
+
+/**
+ * Susy config
+ */
+$susy: (
+    columns: 12,
+    gutters: 1/4,
+    gutter-position: outside,
+    global-box-sizing: border-box,
+);
+
+$susy: (
+    column-width: 120px,
+    gutter: 15px/120px,
+    gutter-position: inside-static,
+);
+
+
+/**
+ * Jeet config
+ */
+@include edit(); // gives all elements a semi-transparent background colour
+$jeet: (
+    gutter: 1/3,
+);
+
+
+/**
+ * Flint config
+ */
+$flint: (
+    "breakpoints": (
+        "desktop": (
+            "columns": 16,
+            "breakpoint": 80em
+        ),
+        "laptop": (
+            "columns": 12,
+            "breakpoint": 60em
+        ),
+        "tablet": (
+            "columns": 8,
+            "breakpoint": 40em
+        ),
+        "mobile": (
+            "columns": 4,
+            "breakpoint": 20em
+        )
+    ),
+    "settings": (
+        "default": "mobile",
+        "grid": "fluid",
+        "gutter": 0.625em,
+        "float-direction": "left",
+        "max-width": true,
+        "center-container": true,
+        "border-box-sizing": true,
+        "instance-maps": true,
+        "support-syntax": false,
+        "debug-mode": false
+    )
+);

@@ -1,0 +1,19 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+img, embed, video {
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+figure {
+    margin: 0;
+}

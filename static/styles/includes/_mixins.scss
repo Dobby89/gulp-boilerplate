@@ -1,0 +1,239 @@
+/**
+ * Mixins for any project
+ *
+ * Feel free to add any more mixins of your own where appropriate.
+ */
+
+/**
+ * Text Rendering
+ *
+ * To define better text rendering on larger type and headings.
+ */
+@mixin text-rendering {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/**
+ * Accessibility-friendly hiding
+ *
+ * So any major elements that require to be hidden are hidden in a friendly way for Screen Readers and Search Engines.
+ */
+@mixin hidden {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+/**
+ * Bringing back invisible elements
+ *
+ * As per the above mixin, this brings back the hidden elements into the fold.
+ */
+@mixin visible {
+    position: relative;
+    top: auto;
+    left: auto;
+}
+
+/**
+ * Hidden text
+ *
+ * For elements that require text to be hidden on an element.
+ */
+@mixin hidden-text {
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
+/**
+ * Viewport settings
+ *
+ * While this isn't official yet, it's as well to provide a prefixed version.
+ * Change the argument to what you see fit! Some designs can be viewed at certain dimensions. Default is for RWD layouts.
+ */
+@mixin viewport($width: device-width) {
+    @-o-viewport {
+        width: $width;
+    }
+
+    //----IE 10 has a bug with viewports for now...
+    //@-ms-viewport {
+    //	width: $width;
+    //}
+
+    @viewport {
+        width: $width;
+    }
+}
+
+/**
+ * Clearing
+ *
+ * For clearing full width elements. See "clear floats" on http://css-tricks.com/pseudo-element-roundup/
+ */
+@mixin clearing {
+    &:before,
+    &:after {
+        content: '';
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+/**
+ * Selection Styling
+ *
+ * CSS for CSS3 Selection complete with prefixes.
+ */
+@mixin selection ($background, $color){
+    ::selection {
+        background: $background;
+        color: $color;
+    }
+
+    ::-moz-selection {
+        background: $background;
+        color: $color;
+    }
+}
+
+/**
+ * Form Placeholders
+ *
+ * Setting the style for form placeholders
+ *
+ * Usage:
+ * @mixin placeholder($color) {
+ *      &::-webkit-input-placeholder {color: $color;}
+ *      &:-moz-placeholder {color: $color;} // Firefox 19
+ *      &::-moz-placeholder {color: $color;}
+ *      &::placeholder {color: $color;}
+ * }
+ */
+@mixin placeholder {
+    &.placeholder { @content }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+}
+
+/**
+ * Hitbox
+ *
+ * Increase the size of an element's hitbox, by setting negative positioning to increase the clickable width of the element.
+ * If no parameters are passed, it just makes the element's clickable area the full width and height of the element.
+ * Limitation: The hitbox area will only match the full width and height of the closest relatively positioned parent element.
+ *
+ * Usage:
+ * .element {
+ *      @include hitbox(-10px, after, 5);
+ * }
+ *
+ * Result:
+ * .element {
+ *      &:after {
+ *          content: "";
+ *          position: absolute;
+ *          top: -10px;
+ *          left: -10px;
+ *          right: -10px;
+ *          bottom: -10px;
+ *          z-index: 5;
+ *          display: block;
+ *      }
+ * }
+ */
+@mixin hitbox($padding: 0, $element: after, $z-index: 9) {
+
+    // check if it's a whole number/integer
+    @if round($padding) == $padding {
+        $negative-padding: $padding * -1px;
+
+        &:#{$element} {
+            content: "";
+            position: absolute;
+            top: $negative-padding;
+            left: $negative-padding;
+            right: $negative-padding;
+            bottom: $negative-padding;
+            z-index: $z-index;
+            display: block;
+        }
+    }
+}
+
+/**
+ * List reset
+ *
+ * Just removes styles from lists
+ */
+@mixin list-reset() {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/**
+ *
+ * Constrain
+ *
+ * Constrains elements to set width and adds auto padding
+ */
+@mixin constrain {
+    max-width: 1600px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/**
+ * Type Setting
+ *
+ * Typography mixin, use the following mixin for finding font sizes and line-heights.
+ * Please use this Mixin anywhere in the project to determine specific font-sizes and line-heights.
+ *
+ * Required the relativeEms() function to exist.
+ *
+ * How to use:
+ * State the following in the mixin arguments in this order, must be number of desired sizes only, no pixels:
+ *      The context type (if null, this will fall back to the universal font-size).
+ *		The target font-size desired.
+ *		The desired line-height/heading.
+ *
+ * Example:
+ * @include type-setting(18, 20, 25);
+ *
+ * Returns:
+ * font-size: 1.11111em;
+ * line-height: 1.25em;
+ *
+ * Use this anywhere a specific type setting is required.
+ */
+@mixin type-setting($context, $target, $line-height) {
+    font-size: relativeEms($target, $context);
+    line-height: relativeEms($line-height, $target);
+}
+
+/**
+ * Breakpoint Media Query
+ *
+ * Good for short-hand media queries and nesting queries inside element property blocks
+ *
+ * Required the relativeEms() function to exist.
+ *
+ * Usage:
+ * .element {
+ *      width: 100%;
+ *
+ *      @include breakpoint(min-width: relativeEms(600, 16)) {
+ *          width: 60%
+ *      }
+ * }
+ */
+@mixin breakpointEms($point) {
+    @media (min-width: relativeEms($point, 16)) { @content; }
+}

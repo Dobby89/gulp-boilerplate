@@ -1,0 +1,81 @@
+/**
+ * Typography
+ *
+ * This file serves as a base stylesheet for all typography.
+ * All styles and functions here are global.
+ */
+
+body {
+    font-size: 1em;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin-top: 0; // Remove all default top margins so we don't get any unexpected spacing
+    font-weight: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+b, strong, th {
+    font-weight: bold;
+}
+
+b, strong, em, i {
+
+}
+
+address {
+    font-style: normal;
+}
+
+blockquote {
+    margin: 0;
+}
+
+// Headings
+h1, .a-head {
+    @include type-setting(16, 23, 25);
+}
+
+h2, .b-head {
+    @include type-setting(16, 20, 25);
+}
+
+h3, .c-head {
+    @include type-setting(16, 18, 22);
+}
+
+h4, .d-head {
+    @include type-setting(16, 16, 22);
+}
+
+h5, .e-head {
+
+}
+
+h6, .f-head {
+
+}
+
+// List styles
+ul, ol {
+
+}
+
+ul {
+
+}
+
+ol {
+
+}
+
+// Nested list styles
+li {
+
+    ul, ol {
+
+    }
+}

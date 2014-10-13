@@ -13,6 +13,7 @@ $ bower install
 ```
 $ gem install sass
 $ gem install compass
+$ gem install breakpoint
 ```
 
 ##Available Gulp Tasks

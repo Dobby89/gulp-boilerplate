@@ -1,0 +1,4 @@
+// Typography Math Function
+@function relativeEms($target, $context) {
+    @return ($target / $context) * 1em;
+}
