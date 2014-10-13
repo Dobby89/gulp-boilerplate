@@ -11,7 +11,7 @@ gulp.task('watch', ['styles', 'scripts', 'copysvg', 'copyimages'], function () {
   gulp.watch('static/styles/**/*.scss', ['styles']);
   gulp.watch('static/scripts/**/*.js', ['scripts']);
   gulp.watch('static/svg/**/*.svg', ['copysvg']);
-  gulp.watch('static/images/**/*.*', ['copyimages']);
+  gulp.watch('static/images/**/*.{jpg,png,gif}', ['copyimages']);
 });
 
 /**

@@ -45,7 +45,7 @@ gulp.task('copyfonts', function () {
  * Usage: gulp copysvg
  */
 gulp.task('copysvg', function () {
-  return gulp.src('static/svg/**/*.*')
+  return gulp.src('static/svg/**/*.svg')
     .pipe(gulp.dest('static/dist/svg'));
 });
 
@@ -55,7 +55,7 @@ gulp.task('copysvg', function () {
  * Usage: gulp sopyimages
  */
 gulp.task('copyimages', function () {
-  return gulp.src('static/images/**/*.*')
+  return gulp.src('static/images/**/*.{jpg,png,gif}')
     .pipe(gulp.dest('static/dist/images'));
 });
 
