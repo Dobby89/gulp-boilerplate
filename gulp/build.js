@@ -140,7 +140,6 @@ gulp.task('scripts', function () {
     .pipe($.size({title: 'main.js'}));
 });
 
-
 /**
  * Iconfont generator
  *
@@ -185,7 +184,13 @@ gulp.task('generatefonts', function(){
     .pipe(gulp.dest('static/fonts')); // where to save the generated font files (absolute path)
 });
 
-
+/**
+ * Error Alert
+ *
+ * Outputs any gulp task errors to the console and a popup (using notify).
+ *
+ * Also means tasks can continue running even on error, which is useful for watch tasks.
+ */
 function errorAlert(error) {
   $.notify.onError({title: "Gulp Error", message: "Check your terminal"})(error);
   console.log('Error:', error);
