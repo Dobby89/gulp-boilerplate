@@ -10,12 +10,11 @@ fieldset {
     border: 0;
 }
 
-// Form Rows
 .form-row {
 
 }
 
-.errorlist {
+.error-list {
 
 
     li {
@@ -34,7 +33,11 @@ label {
 
 // Placeholder styles for any form elements needing this.
 %input-styles {
-    background: #fff; // need something here otherwise it can't be extended
+    width: 100%;
+    display: block;
+    border: 0;
+    margin: 0;
+    background: #fff;
 }
 
 // Input styles
@@ -142,6 +145,7 @@ textarea {
     }
 }
 
+// Styles for custom checkbox and radio buttons
 input[type="checkbox"],
 input[type="radio"] {
 
