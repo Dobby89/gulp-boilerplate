@@ -81,7 +81,7 @@ gulp.task('styles', function () {
     }))
     // catch any compilation errors and output to the console and a popup to stop the process needing to be restarted every time there's an error
     .on('error', errorAlert)
-    .pipe($.autoprefixer('last 20 version', 'safari 5', 'ie 8', 'ie 9', 'ff 17', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe($.autoprefixer('last 2 version'))
     // catch any compilation errors and output to the console and a popup to stop the process needing to be restarted every time there's an error
     .on('error', errorAlert)
     .pipe($.size({title: 'main.css'}))
@@ -108,7 +108,7 @@ gulp.task('styles-libsass', function () {
       sourceComments: 'none' // 'none', 'normal' or 'map'
     }))
     .on('error', errorAlert)
-    .pipe($.autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'ff 17', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe($.autoprefixer('last 2 version'))
     .on('error', errorAlert)
     .pipe($.size({title: 'main.css'}))
     .pipe(gulp.dest('static/dist/styles'));
