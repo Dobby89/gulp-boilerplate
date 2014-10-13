@@ -179,18 +179,6 @@
 }
 
 /**
- *
- * Constrain
- *
- * Constrains elements to set width and adds auto padding
- */
-@mixin constrain {
-    max-width: 1600px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-/**
  * Type Setting
  *
  * Typography mixin, use the following mixin for finding font sizes and line-heights.
@@ -221,19 +209,32 @@
 /**
  * Breakpoint Media Query
  *
- * Good for short-hand media queries and nesting queries inside element property blocks
+ * Good for short-hand media queries and nesting queries inside element property blocks.
+ * Utilises the relativeEms() function to convert the px width into ems, which is better for responsive designs.
  *
- * Required the relativeEms() function to exist.
+ * @params
+ * $width: The width (px) of the breakpoint
+ * $body-font-size (optional): The font size (px) of the body element. This is usually 16px by default
  *
  * Usage:
  * .element {
  *      width: 100%;
  *
- *      @include breakpoint(min-width: relativeEms(600, 16)) {
+ *      @include breakpointEms(600) {
  *          width: 60%
  *      }
  * }
+ *
+ * Output:
+ * .element {
+ *      width: 100%;
+ * }
+ * @media (min-width: 31.25em) {
+ *     .element {
+ *         width: 60%;
+ *     }
+ * }
  */
-@mixin breakpointEms($point) {
-    @media (min-width: relativeEms($point, 16)) { @content; }
+@mixin breakpointEms($width, $body-font-size: 16) {
+    @media (min-width: relativeEms($width, $body-font-size)) { @content; }
 }
