@@ -1,7 +1,7 @@
 //@import "compass";
-@import "jeet/scss/jeet/index";
+@import "jeet/scss/jeet/index"; // bower component (https://github.com/mojotech/jeet)
 //@import "susy";
-@import "breakpoint";
+@import "breakpoint"; // ruby gem (https://github.com/at-import/breakpoint)
 
 @import "includes/settings";
 @import "includes/mixins";
