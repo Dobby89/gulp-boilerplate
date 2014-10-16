@@ -9,6 +9,7 @@ Also includes an icon font generator gulp task, which converts svg images to fon
 $ npm install
 $ bower install
 $ gem install sass
-$ gem install compass
-$ gem install breakpoint
 ```
+
+###Compass
+If you're planning to use compass, install the ruby gem `$ gem install compass` and uncomment `@import "compass";` in static/styles/main.scss
