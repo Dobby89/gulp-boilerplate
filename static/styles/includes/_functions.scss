@@ -1,4 +1,30 @@
-// Typography Math Function
+/**
+ * Functions
+ */
+
+/**
+ * Typography Math Function
+ *
+ * Returns an EM value for a given PX
+ * You need to be aware of the current font size of the element you're styling.
+ *
+ * Usage:
+ * .element {
+ *     font-size: 12px;
+ *
+ *     .child-element {
+ *         font-size: relativeEms(20, 12);
+ *     }
+ * }
+ *
+ * Output:
+ * .element {
+ *     font-size: 12px;
+ * }
+ * .element .child-element {
+ *     font-size: 1.6666667em;
+ * }
+ */
 @function relativeEms($target, $context) {
     @return ($target / $context) * 1em;
 }

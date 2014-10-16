@@ -1,36 +1,8 @@
 /**
- * Susy config
+ * Settings
  */
-//$susy: (
-//  columns: 4, // default is set to 8-columns
-//  global-box-sizing: border-box,
-//  debug: (image: show)
-//);
 
-//$susy: (
-//  math: static,
-//  columns: 4,
-//  column-width: 60px,
-//  gutters: 1 / 4
-//);
-
-//$susy: (
-//    columns: 12,
-//    gutters: 1/4,
-//    gutter-position: outside,
-//    global-box-sizing: border-box,
-//);
-//
-//$susy: (
-//    column-width: 120px,
-//    gutter: 15px/120px,
-//    gutter-position: inside-static,
-//);
-
-
-/**
- * Jeet config
- */
+// Jeet config
 @include edit(); // gives all elements a semi-transparent background colour
 $jeet: (
     gutter: 1/3,

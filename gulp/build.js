@@ -72,7 +72,7 @@ gulp.task('styles', function () {
       project: path.join(__dirname, '../', 'static'),
       css: 'dist/styles',
       sass: 'styles',
-      require: ['breakpoint'],
+//      require: ['compass-normalize'], // include any ruby gems here, so compass knows to require them
       import_path: '../bower_components', // so the compiler knows to look for scss files within the bower directory as well
       logging  : false,
       comments : false,
@@ -95,24 +95,22 @@ gulp.task('styles', function () {
  *
  * This means you don't need to install Ruby gems because this is a node/gulp implementation of the sass compiler.
  *
- * Also uses autoprefixer, so no need for compass mixins
- *
  * Usage: gulp styles-libsass
  */
-gulp.task('styles-libsass', function () {
-  return gulp.src('static/styles/**/*.scss')
-    .pipe($.sass({
-      // See https://github.com/sass/node-sass for full list of parameter references
-      includePaths: ['./bower_components'],  // so the compiler knows to look for scss files within the bower directory as well
-      outputStyle: 'compressed', // 'nested' or 'compressed' ('expanded' and 'compact' are not currently supported by libsass)
-      sourceComments: 'none' // 'none', 'normal' or 'map'
-    }))
-    .on('error', errorAlert)
-    .pipe($.autoprefixer('last 2 version'))
-    .on('error', errorAlert)
-    .pipe($.size({title: 'main.css'}))
-    .pipe(gulp.dest('static/dist/styles'));
-});
+//gulp.task('styles-libsass', function () {
+//  return gulp.src('static/styles/**/*.scss')
+//    .pipe($.sass({
+//      // See https://github.com/sass/node-sass for full list of parameter references
+//      includePaths: ['./bower_components'],  // so the compiler knows to look for scss files within the bower directory as well
+//      outputStyle: 'compressed', // 'nested' or 'compressed' ('expanded' and 'compact' are not currently supported by libsass)
+//      sourceComments: 'none' // 'none', 'normal' or 'map'
+//    }))
+//    .on('error', errorAlert)
+//    .pipe($.autoprefixer('last 2 version'))
+//    .on('error', errorAlert)
+//    .pipe($.size({title: 'main.css'}))
+//    .pipe(gulp.dest('static/dist/styles'));
+//});
 
 /**
  * Concatenate website main scripts using browserify
