@@ -10,11 +10,6 @@ body {
 
 h1, h2, h3, h4, h5, h6, p {
     margin-top: 0; // Remove all default top margins so we don't get any unexpected spacing
-    font-weight: normal;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
 }
 
 b, strong, th {
@@ -35,19 +30,19 @@ blockquote {
 
 // Headings
 h1, .a-head {
-    @include type-setting(16, 23, 25);
+
 }
 
 h2, .b-head {
-    @include type-setting(16, 20, 25);
+
 }
 
 h3, .c-head {
-    @include type-setting(16, 18, 22);
+
 }
 
 h4, .d-head {
-    @include type-setting(16, 16, 22);
+
 }
 
 h5, .e-head {
