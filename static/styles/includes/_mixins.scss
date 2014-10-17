@@ -1,7 +1,5 @@
 /**
  * Mixins
- *
- * Add any more mixins of your own
  */
 
 /**
@@ -212,9 +210,9 @@
  * Good for short-hand media queries and nesting queries inside element property blocks.
  * Utilises the relativeEms() function to convert the px width into ems, which is better for responsive designs.
  *
- * @params
- * $width: The width (px) of the breakpoint
- * $body-font-size (optional): The font size (px) of the body element. This is usually 16px by default
+ * Parameters:
+ * $width: The width of the breakpoint (value in pixels)
+ * $context: (optional) The font-size value, in pixels, of the body element. This is 16px by default, which matches the default size of most browsers.
  *
  * Usage:
  * .element {
@@ -235,6 +233,6 @@
  *     }
  * }
  */
-@mixin breakpointEms($width, $body-font-size: 16) {
-    @media screen and (min-width: relativeEms($width, $body-font-size)) { @content; }
+@mixin breakpointEms($width, $context: 16) {
+    @media screen and (min-width: relativeEms($width, $context)) { @content; }
 }
