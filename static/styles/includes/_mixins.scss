@@ -236,5 +236,5 @@
  * }
  */
 @mixin breakpointEms($width, $body-font-size: 16) {
-    @media (min-width: relativeEms($width, $body-font-size)) { @content; }
+    @media screen and (min-width: relativeEms($width, $body-font-size)) { @content; }
 }
