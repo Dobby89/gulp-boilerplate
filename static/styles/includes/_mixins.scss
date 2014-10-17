@@ -180,7 +180,7 @@
  * Type Setting
  *
  * Typography mixin, use the following mixin for finding font sizes and line-heights.
- * Please use this Mixin anywhere in the project to determine specific font-sizes and line-heights.
+ * Used to determine specific font-sizes and line-heights.
  *
  * Required the relativeEms() function to exist.
  *
@@ -199,7 +199,7 @@
  *
  * Use this anywhere a specific type setting is required.
  */
-@mixin type-setting($context, $target, $line-height) {
+@mixin type-setting($target, $line-height, $context: 16) {
     font-size: relativeEms($target, $context);
     line-height: relativeEms($line-height, $target);
 }
