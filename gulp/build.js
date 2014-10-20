@@ -66,7 +66,7 @@ gulp.task('copyimages', function () {
  *
  * Usage: gulp styles
  */
-gulp.task('styles', function () {
+gulp.task('styles-compass', function () {
   return gulp.src('static/styles/**/*.scss')
     .pipe($.compass({
       project: path.join(__dirname, '../', 'static'),
@@ -97,7 +97,7 @@ gulp.task('styles', function () {
  *
  * Usage: gulp styles-libsass
  */
-gulp.task('styles-libsass', function () {
+gulp.task('styles', function () {
   return gulp.src('static/styles/**/*.scss')
     .pipe($.sass({
       // See https://github.com/sass/node-sass for full list of parameter references
