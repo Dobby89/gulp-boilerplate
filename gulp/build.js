@@ -52,7 +52,7 @@ gulp.task('copysvg', function () {
 /**
  * Copy images into /dist
  *
- * Usage: gulp sopyimages
+ * Usage: gulp copyimages
  */
 gulp.task('copyimages', function () {
   return gulp.src('static/images/**/*.{jpg,png,gif}')
