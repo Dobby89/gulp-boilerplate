@@ -1,4 +1,4 @@
-# Boilerplate for Gulp
+# Gulp Boilerplate
 
 ## Key Features
 
