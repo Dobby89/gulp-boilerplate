@@ -2,7 +2,7 @@
 //@import "compass"; // optional if using compass
 
 // Jeet Grid System bower component (https://github.com/mojotech/jeet)
-@import "jeet/scss/jeet/index";
+//@import "jeet/scss/jeet/index";
 
 // Basic settings, resets and helper files
 @import "includes/settings";
@@ -23,3 +23,12 @@
 @import "layout/header";
 @import "layout/main";
 @import "layout/footer";
+
+@import "sprite/sprite";
+
+.icon-info {
+    @extend %sprite-info;
+}
+.icon-quote {
+    @extend %sprite-quote;
+}

@@ -5,6 +5,7 @@ var path = require('path');
 var pngcrush = require('imagemin-pngcrush');
 
 var $ = require('gulp-load-plugins')();
+var svgspritesheet = require('gulp-svg-spritesheet');
 
 /**
  * Build tasks
@@ -14,7 +15,7 @@ var $ = require('gulp-load-plugins')();
  *
  * Usage: gulp build
  */
-gulp.task('build', ['styles', 'scripts', 'copyfonts', 'copysvg', 'copyimages']);
+gulp.task('build', ['styles', 'scripts', 'sprite', 'copyfonts', 'copysvg', 'copyimages']);
 
 /**
  * Clean output directories
@@ -180,6 +181,35 @@ gulp.task('generatefonts', function(){
         .pipe(gulp.dest('static/styles/fonts/')); // directory to save the generated scss file (absolute path)
     })
     .pipe(gulp.dest('static/fonts')); // where to save the generated font files (absolute path)
+});
+
+
+/**
+ * Sprite generator
+ *
+ * Converts .svg files into an .svg sprite sheet (with a .png fallback for IE8)
+ *
+ * Also generates an .scss file with pre-made icon classes referencing each icon from the sheet
+ *
+ * Usage: $ gulp sprite
+ */
+gulp.task('sprite', function () {
+  gulp.src('static/svg/icons/*.svg')
+    .pipe(svgspritesheet({
+      cssPathSvg: '../images/sprite.svg',
+      templateSrc: 'static/styles/sprite/_template.scss',
+      templateDest: 'static/styles/sprite/_sprite.scss',
+
+      // IE8 PNG fallback
+      cssPathNoSvg: '../images/sprite.png',
+      padding: 2,
+      pixelBase: 16,
+      positioning: 'diagonal',
+      units: 'px'
+    }))
+    .pipe(gulp.dest('static/dist/images/sprite.svg'))
+    .pipe($.svg2png())
+    .pipe(gulp.dest('static/dist/images/sprite.png'));
 });
 
 /**
