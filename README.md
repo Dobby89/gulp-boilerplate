@@ -5,6 +5,7 @@
 * Compiles scss with gulp-compass and gulp-autoprefixer
 * Compiles local scripts and bower dependencies using browserify
 * Icon font generator gulp task, which converts svg images to font files and creates a dynamic `_iconfont.scss` partial which references the icon font and unicode characters
+* Sprite sheet generator gulp task, which merges svg images into a single `sprite.svg` (and `sprite.png` fallback for IE8). Also generates a dynamic `_sprite.scss` partial which references each icon
 * Browser Sync gulp task, which can serve static files or from localhost/yourlocal.dev
 
 ## Getting Started
