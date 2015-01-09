@@ -15,7 +15,7 @@ var svgspritesheet = require('gulp-svg-spritesheet');
  *
  * Usage: gulp build
  */
-gulp.task('build', ['styles', 'scripts', 'sprite', 'copyfonts', 'copysvg', 'copyimages']);
+gulp.task('build', ['sprite', 'styles', 'scripts', 'copyfonts', 'copysvg', 'copyimages']);
 
 /**
  * Clean output directories
