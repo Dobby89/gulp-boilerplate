@@ -27,8 +27,34 @@
 @import "sprite/sprite";
 
 .icon-info {
-    @extend %sprite-info;
+    @include sprite('info', 90);
 }
 .icon-quote {
-    @extend %sprite-quote;
+    @include sprite('quote', 90);
+}
+.icon-begbies {
+    @extend %sprite-begbies;
+}
+.icon-begbies2 {
+    @include responsive-sprite('begbies');
+}
+.icon-begbies3 {
+    @include sprite('begbies', 250);
+}
+.icon-begbies4 {
+    @include svg-sprite('begbies', 250);
+//    width: 250px;
+//    height: 54px;
+}
+.icon-checkbox-checked {
+    @include svg-sprite('checkbox-checked', 30);
+}
+.icon-checkbox-unchecked {
+    @include responsive-sprite('checkbox-unchecked');
+}
+.icon-uk-map-matrix {
+    @include responsive-sprite('uk-map-matrix');
+}
+.icon-youtube {
+    @include responsive-sprite('youtube');
 }

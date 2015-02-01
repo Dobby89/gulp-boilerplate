@@ -202,9 +202,9 @@ gulp.task('sprite', function () {
 
       // IE8 PNG fallback
       cssPathNoSvg: '../images/sprite.png',
-      padding: 2,
+      padding: 4, // spacing between icons
       pixelBase: 16,
-      positioning: 'diagonal',
+      positioning: 'vertical', // vertical | horizontal | diagonal | packed
       units: 'px'
     }))
     .pipe(gulp.dest('static/dist/images/sprite.svg'))
