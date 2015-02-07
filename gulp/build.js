@@ -3,9 +3,9 @@
 var gulp = require('gulp');
 var path = require('path');
 var pngcrush = require('imagemin-pngcrush');
-
 var $ = require('gulp-load-plugins')();
 var svgspritesheet = require('gulp-svg-spritesheet');
+var handleErrors = require('./handleErrors');
 
 /**
  * Build tasks
@@ -89,10 +89,10 @@ gulp.task('styles-compass', function () {
       sourcemap: false
     }))
     // catch any compilation errors and output to the console and a popup to stop the process needing to be restarted every time there's an error
-    .on('error', errorAlert)
+    .on('error', handleErrors)
     .pipe($.autoprefixer('last 2 version'))
     // catch any compilation errors and output to the console and a popup to stop the process needing to be restarted every time there's an error
-    .on('error', errorAlert)
+    .on('error', handleErrors)
     .pipe($.size({title: 'main.css'}))
     .pipe(gulp.dest('dist/styles'));
 });
@@ -106,7 +106,7 @@ gulp.task('styles-compass', function () {
  *
  * Usage: gulp styles-libsass
  */
-gulp.task('styles', function () {
+gulp.task('styles', ['sprite', 'iconfont'], function () {
   return gulp.src('src/styles/**/*.scss')
     .pipe($.sass({
       // See https://github.com/sass/node-sass for full list of parameter references
@@ -114,9 +114,9 @@ gulp.task('styles', function () {
       outputStyle: 'compressed', // 'nested' or 'compressed' ('expanded' and 'compact' are not currently supported by libsass)
       sourceComments: 'none' // 'none', 'normal' or 'map'
     }))
-    .on('error', errorAlert)
+    .on('error', handleErrors)
     .pipe($.autoprefixer('last 2 version'))
-    .on('error', errorAlert)
+    .on('error', handleErrors)
     .pipe($.size({title: 'main.css'}))
     .pipe(gulp.dest('dist/styles'));
 });
@@ -142,7 +142,7 @@ gulp.task('scripts', function () {
       }
     }))
     // catch any compilation errors and output to the console and a popup to stop the process needing to be restarted every time there's an error
-    .on('error', errorAlert)
+    .on('error', handleErrors)
     .pipe(gulp.dest('dist/scripts'))
     .pipe($.size({title: 'main.js'}));
 });
@@ -168,7 +168,7 @@ var classPrefix = 'iconfont'; // the CSS class prefix of the scss partial? E.g. 
 var partialFileName = '_iconfont.scss'; // the name of the generated scss filename
 
 gulp.task('iconfont', function(){
-  gulp.src(['src/svg/font_icons/**/*.svg']) // the location of all the svg files to be created into the font
+  return gulp.src(['src/svg/font_icons/**/*.svg']) // the location of all the svg files to be created into the font
     .pipe($.iconfont({
       normalize: true,
       fontName: fontName,
@@ -202,7 +202,7 @@ gulp.task('iconfont', function(){
  * Usage: $ gulp sprite
  */
 gulp.task('sprite', function () {
-  gulp.src('src/svg/icons/*.svg')
+  return gulp.src('src/svg/icons/*.svg')
     .pipe(svgspritesheet({
       cssPathSvg: '../images/sprite.svg',
       templateSrc: 'src/styles/sprite/_template.scss',
@@ -219,16 +219,3 @@ gulp.task('sprite', function () {
     .pipe($.svg2png())
     .pipe(gulp.dest('dist/images/sprite.png'));
 });
-
-/**
- * Error Alert
- *
- * Outputs any gulp task errors to the console and a popup (using notify).
- *
- * Also means tasks can continue running even on error, which is useful for watch tasks.
- */
-function errorAlert(error) {
-  $.notify.onError({title: "Gulp Error", message: "Check your terminal"})(error);
-  console.log('Error:', error);
-  this.emit("end");
-}
