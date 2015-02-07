@@ -106,7 +106,7 @@ gulp.task('styles-compass', function () {
  *
  * Usage: gulp styles-libsass
  */
-gulp.task('styles', ['sprite', 'iconfont'], function () {
+gulp.task('styles', function () {
   return gulp.src('src/styles/**/*.scss')
     .pipe($.sass({
       // See https://github.com/sass/node-sass for full list of parameter references
