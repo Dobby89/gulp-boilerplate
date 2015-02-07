@@ -36,7 +36,7 @@ function browserSyncInit(files, browser) {
  */
 gulp.task('serve', ['watch'], function () {
   browserSyncInit([
-    'static/dist/**/*.css',
-    'static/dist/**/*.js'
+    'dist/**/*.css',
+    'dist/**/*.js'
   ]);
 });

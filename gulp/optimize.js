@@ -14,11 +14,11 @@ var $ = require('gulp-load-plugins')();
  * Usage: optimizesvg
  */
 gulp.task('optimizesvg', function () {
-  return gulp.src('static/svg/**/*.*')
+  return gulp.src('src/svg/**/*.*')
     .pipe($.imagemin({
       svgoPlugins: [{removeViewBox: false}]
     }))
-    .pipe(gulp.dest('static/svg'));
+    .pipe(gulp.dest('src/svg'));
 });
 
 /**
@@ -27,13 +27,13 @@ gulp.task('optimizesvg', function () {
  * Usage: gulp optimizeimages
  */
 gulp.task('optimizeimages', function () {
-  return gulp.src('static/images/**/*.*')
+  return gulp.src('src/images/**/*.*')
     .pipe($.imagemin({
       progressive: true,
       svgoPlugins: [{removeViewBox: false}],
       use: [pngcrush()]
     }))
-    .pipe(gulp.dest('static/images'));
+    .pipe(gulp.dest('src/images'));
 });
 
 /**

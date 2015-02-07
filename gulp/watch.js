@@ -8,10 +8,10 @@ var gulp = require('gulp');
  * Usage: gulp watch
  */
 gulp.task('watch', ['build'], function () {
-  gulp.watch('static/styles/**/*.scss', ['styles']);
-  gulp.watch('static/scripts/**/*.js', ['scripts']);
-  gulp.watch('static/svg/**/*.svg', ['copysvg']);
-  gulp.watch('static/images/**/*.{jpg,png,gif}', ['copyimages']);
+  gulp.watch('src/styles/**/*.scss', ['styles']);
+  gulp.watch('src/scripts/**/*.js', ['scripts']);
+  gulp.watch('src/svg/**/*.svg', ['copysvg']);
+  gulp.watch('src/images/**/*.{jpg,png,gif}', ['copyimages']);
 });
 
 /**
@@ -22,7 +22,7 @@ gulp.task('watch', ['build'], function () {
  * Usage: gulp watch:styles
  */
 gulp.task('watch:styles', ['styles'], function () {
-  gulp.watch('static/styles/**/*.scss', ['styles']);
+  gulp.watch('src/styles/**/*.scss', ['styles']);
 });
 
 /**
@@ -33,5 +33,5 @@ gulp.task('watch:styles', ['styles'], function () {
  * Usage: gulp watch:scripts
  */
 gulp.task('watch:scripts', ['scripts'], function () {
-  gulp.watch('static/scripts/**/*.js', ['scripts']);
+  gulp.watch('src/scripts/**/*.js', ['scripts']);
 });
