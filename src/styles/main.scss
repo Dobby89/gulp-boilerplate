@@ -47,7 +47,7 @@
 //    height: 54px;
 }
 .icon-checkbox-checked {
-    @include svg-sprite('checkbox-checked', 30);
+    @include svg-sprite('checkbox-checked', 160);
 }
 .icon-checkbox-unchecked {
     @include responsive-sprite('checkbox-unchecked');
