@@ -9,6 +9,13 @@ var $ = require('gulp-load-plugins')();
 // `$ gulp optimize` should only be run if new svgs or images are added to the static directory before committing
 
 /**
+ * Frontend optimization tasks
+ *
+ * Usage: gulp optimize
+ */
+gulp.task('optimize', ['optimizesvg', 'optimizeimages']);
+
+/**
  * Compress svgs needed for the website
  *
  * Usage: optimizesvg
@@ -35,10 +42,3 @@ gulp.task('optimizeimages', function () {
     }))
     .pipe(gulp.dest('src/images'));
 });
-
-/**
- * Frontend optimization tasks
- *
- * Usage: gulp optimize
- */
-gulp.task('optimize', ['optimizesvg', 'optimizeimages']);
