@@ -2,42 +2,49 @@
 
 ## Key Features
 
-* Compiles scss with gulp-compass and gulp-autoprefixer
-* Compiles local scripts and bower dependencies using browserify
-* Icon font generator gulp task, which converts svg images to font files and creates a dynamic `_iconfont.scss` partial which references the icon font and unicode characters
-* Sprite sheet generator gulp task, which merges svg images into a single `sprite.svg` (and `sprite.png` fallback for IE8). Also generates a dynamic `_sprite.scss` partial which references each icon
-* Browser Sync gulp task, which can serve static files or from localhost/yourlocal.dev
+* Compile SCSS to CSS with [gulp sass](https://github.com/dlmanning/gulp-sass)
+* Post-process CSS using [gulp pleeease] (https://github.com/danielhusar/gulp-pleeease) (includes autoprefixer)
+* Compile local scripts and bower dependencies using [gulp browserify](https://github.com/deepak1556/gulp-browserify)
+* Generate custom font icons from SVG files and create a dynamic `_iconfont.scss` partial which references the icon font and unicode characters, using [gulp iconfont](https://github.com/nfroidure/gulp-iconfont)
+* Generate SVG spritesheet, merging separate SVG images into a single `sprite.svg` (and `sprite.png` fallback for IE8). Also generates a dynamic `_sprite.scss` partial which references each icon, using [gulp svg spritesheet](https://github.com/iamdarrenhall/gulp-svg-spritesheet) and [gulp svg2png](gulp-svg2png)
 
-## Getting Started
+## Usage
 
-Run the following in your terminal
-```
-$ npm install
-$ bower install
-$ gem install sass
-$ gem install compass
-```
+    $ npm install
+    $ bower install
+    $ gulp
 
-## Watch Assets
+## Available Gulp Tasks
 
-To watch for changes to styles, scripts and images:
-```
-$ gulp watch
-```
+### Build Tasks
+    $ gulp // cleans then builds
+    $ gulp build
+    $ gulp clean
 
-To ONLY watch styles:
-```
-$ gulp watch:styles
-```
+### Styles
+Compile SCSS to CSS and post-process for vendor prefixes and browser fixes.
 
-To ONLY watch scripts:
-```
-$ gulp watch:scripts
-```
+    $ gulp styles
 
-## Serve
+### Scripts
+Compile JS using Browserify.
 
-To serve static files from base directory or as a proxy server (as `127.0.0.1:8000` or something like `yourlocal.dev`):
-```
-$ gulp serve // Uses BrowserSync - further config may be required
-```
+    $ gulp scripts
+
+
+### Watch
+Watch styles and scripts (style-only and script-only watch tasks available).
+
+    $ gulp watch
+    $ gulp watch:styles
+    $ gulp watch:scripts
+
+### Icon Font
+Create a custom icon font from separate SVG files inside `src/fonts/icons/`. This will also create `_iconfont.scss` which references each icon.
+
+    $ gulp iconfont
+
+### Sprite Sheet
+Create an SVG spritesheet from multiple SVG files inside `src/svg/icons/`. This will also create `_sprite.scss` which references each icon.
+
+    $ gulp sprite
