@@ -2,6 +2,7 @@
 
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var runSequence = require('run-sequence');
 var handleErrors = require('../helpers/handleErrors');
 
 /**
@@ -24,8 +25,18 @@ var fontPath = '../fonts/'; // path to font directory, relative to the productio
 var classPrefix = 'iconfont'; // the CSS class prefix of the scss partial? E.g. `[prefix]-chevron`
 var partialFileName = '_iconfont.scss'; // the name of the generated scss filename
 
-gulp.task('iconfont', function(){
-  return gulp.src(['src/fonts/icons/**/*.svg']) // the location of all the svg files to be created into the font
+gulp.task('iconfont', function(callback) {
+  runSequence(
+    ['cleanTempIcons'], // remove te
+    ['copyTempIcons'],
+    ['generateIcons'],
+    ['cleanTempIcons'],
+    callback);
+});
+
+gulp.task('generateIcons', function(){
+
+  return gulp.src(['src/fonts/icons/temp/**/*.svg']) // the location of all the svg files to be created into the font
     .pipe($.iconfont({
       normalize: true,
       fontName: fontName,
@@ -46,4 +57,14 @@ gulp.task('iconfont', function(){
         .pipe(gulp.dest('src/styles/fonts/')); // directory to save the generated scss file (absolute path)
     })
     .pipe(gulp.dest('src/fonts')); // where to save the generated font files (absolute path)
+});
+
+gulp.task('cleanTempIcons', function(){
+  return gulp.src(['src/fonts/icons/temp'])
+    .pipe($.rimraf());
+});
+
+gulp.task('copyTempIcons', function(){
+  return gulp.src(['src/fonts/icons/**/*.svg'])
+    .pipe(gulp.dest('src/fonts/icons/temp'));
 });
