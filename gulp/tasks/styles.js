@@ -47,12 +47,26 @@ gulp.task('styles', function () {
     .pipe($.sass({
       // See https://github.com/sass/node-sass for full list of parameter references
       includePaths: ['./bower_components'],  // so the compiler knows to look for scss files within the bower directory as well
-      outputStyle: 'compressed', // 'nested' or 'compressed' ('expanded' and 'compact' are not currently supported by libsass)
+      outputStyle: 'nested', // 'nested' or 'compressed' ('expanded' and 'compact' are not currently supported by libsass)
       sourceComments: 'none' // 'none', 'normal' or 'map'
     }))
     .on('error', handleErrors)
-    .pipe($.autoprefixer('last 2 version'))
-    .on('error', handleErrors)
+    .pipe($.pleeease({ // http://pleeease.io/docs/
+      autoprefixer: ["last 4 versions", "ios 6"],
+      filters: {oldIE: false},
+      rem: ["16px", {replace: false, atrules: false}],
+      pseudoElements: true,
+      opacity: true,
+
+      import: true,
+      minifier: false,
+      //minifier: {preserveHacks: true, removeAllComments: false},
+      mqpacker: false,
+
+      sourcemaps: false,
+
+      next: false
+    }))
     .pipe($.size({title: 'main.css'}))
     .pipe(gulp.dest('dist/styles'));
 });
