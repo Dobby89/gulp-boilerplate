@@ -6,7 +6,7 @@
 * Post-process CSS using [gulp pleeease] (https://github.com/danielhusar/gulp-pleeease) (includes autoprefixer)
 * Compile local scripts and bower dependencies using [gulp browserify](https://github.com/deepak1556/gulp-browserify)
 * Generate custom font icons from SVG files and create a dynamic `_iconfont.scss` partial which references the icon font and unicode characters, using [gulp iconfont](https://github.com/nfroidure/gulp-iconfont)
-* Generate SVG spritesheet, merging separate SVG images into a single `sprite.svg` (and `sprite.png` fallback for IE8). Also generates a dynamic `_sprite.scss` partial which references each icon, using [gulp svg spritesheet](https://github.com/iamdarrenhall/gulp-svg-spritesheet) and [gulp svg2png](gulp-svg2png)
+* Generate SVG spritesheet, merging separate SVG images into a single `sprite.svg` (and `sprite.png` fallback for IE8). Also generates a dynamic `_sprite.scss` partial which references each icon, using [gulp svg spritesheet](https://github.com/iamdarrenhall/gulp-svg-spritesheet) and [gulp svg2png](https://github.com/akoenig/gulp-svg2png)
 
 ## Usage
 
