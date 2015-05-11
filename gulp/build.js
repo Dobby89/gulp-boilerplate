@@ -12,24 +12,11 @@ var runSequence = require('run-sequence');
  *
  * Usage: gulp build
  */
-//gulp.task('build', ['sprite', 'iconfont', 'styles', 'scripts', 'copyfonts', 'copysvg', 'copyimages']);
 gulp.task('build', function(callback) {
   runSequence(
     ['sprite', 'iconfont', 'scripts'],
-    ['copyfonts', 'styles', 'copysvg', 'copyimages'],
+    ['styles', 'copysvg', 'copyimages'],
     callback);
-});
-
-/**
- * Copy fonts needed for the website
- *
- * Usage: gulp copyfonts
- */
-gulp.task('copyfonts', function () {
-  return gulp.src([
-      'src/fonts/**/*.*'
-    ])
-    .pipe(gulp.dest('dist/fonts'));
 });
 
 /**

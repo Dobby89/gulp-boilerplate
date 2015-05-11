@@ -56,7 +56,7 @@ gulp.task('generateIcons', function(){
         .pipe($.rename(partialFileName)) // rename the generated scss filename, otherwise it inherits the filename of the template scss file
         .pipe(gulp.dest('src/styles/fonts/')); // directory to save the generated scss file (absolute path)
     })
-    .pipe(gulp.dest('src/fonts')); // where to save the generated font files (absolute path)
+    .pipe(gulp.dest('dist/fonts')); // where to save the generated font files (absolute path)
 });
 
 gulp.task('cleanTempIcons', function(){
