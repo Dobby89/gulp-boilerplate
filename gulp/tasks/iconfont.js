@@ -27,7 +27,7 @@ var partialFileName = '_iconfont.scss'; // the name of the generated scss filena
 
 gulp.task('iconfont', function(callback) {
   runSequence(
-    ['cleanTempIcons'], // remove te
+    ['cleanTempIcons'],
     ['copyTempIcons'],
     ['generateIcons'],
     ['cleanTempIcons'],
