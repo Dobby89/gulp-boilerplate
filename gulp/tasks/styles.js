@@ -20,7 +20,7 @@ var pleaseOptions = {
   },
   development: {
     autoprefixer: ["last 2 versions"],
-    minifier: {preserveHacks: false, removeAllComments: false},
+    minifier: false,
     sourcemaps: true
   }
 }
