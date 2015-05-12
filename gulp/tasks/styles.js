@@ -2,7 +2,28 @@
 
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var argv = require('yargs').argv;
 var handleErrors = require('../helpers/handleErrors');
+
+var pleaseOptions = {
+  production : {
+    autoprefixer: ["last 4 versions", "ios 6"],
+    filters: false,
+    rem: ["16px", {replace: false, atrules: false}],
+    pseudoElements: true,
+    opacity: true,
+    import: true,
+    minifier: {preserveHacks: true, removeAllComments: true},
+    mqpacker: true,
+    sourcemaps: false,
+    next: false
+  },
+  development: {
+    autoprefixer: ["last 2 versions"],
+    minifier: {preserveHacks: false, removeAllComments: false},
+    sourcemaps: true
+  }
+}
 
 /**
  * Compile website Sass using gulp-sass
@@ -20,22 +41,7 @@ gulp.task('styles', function () {
       sourceComments: 'none' // 'none', 'normal' or 'map'
     }))
     .on('error', handleErrors)
-    .pipe($.pleeease({ // http://pleeease.io/docs/
-      autoprefixer: ["last 4 versions", "ios 6"],
-      filters: {oldIE: false},
-      rem: ["16px", {replace: false, atrules: false}],
-      pseudoElements: true,
-      opacity: true,
-
-      import: true,
-      minifier: false,
-      //minifier: {preserveHacks: true, removeAllComments: false},
-      mqpacker: false,
-
-      sourcemaps: false,
-
-      next: false
-    }))
+    .pipe($.pleeease(argv.prod === undefined ? pleaseOptions.development : pleaseOptions.production))
     .pipe($.size({title: 'main.css'}))
     .pipe(gulp.dest('dist/styles'));
 });
