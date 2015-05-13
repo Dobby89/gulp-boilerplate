@@ -40,7 +40,8 @@ gulp.task('generateIcons', function(){
     .pipe($.iconfont({
       normalize: true,
       fontName: fontName,
-      appendCodepoints: true
+      appendCodepoints: true,
+      fontHeight: 1001 // fixes badly rendered icons
     }))
     .on('codepoints', function(codepoints, options) {
       codepoints.forEach(function(glyph, idx, arr) {
