@@ -34,12 +34,13 @@ var pleaseOptions = {
  */
 gulp.task('styles', function () {
   return gulp.src('src/styles/**/*.scss')
-    .pipe($.sass({
+    .pipe($.sass.sync({
       // See https://github.com/sass/node-sass for full list of parameter references
       includePaths: ['./bower_components'],  // so the compiler knows to look for scss files within the bower directory as well
-      outputStyle: 'nested', // 'nested' or 'compressed' ('expanded' and 'compact' are not currently supported by libsass)
+      outputStyle: 'compressed', // nested, expanded, compact, compressed
       sourceComments: 'none' // 'none', 'normal' or 'map'
-    }))
+    })
+    .on('error', $.sass.logError))
     .on('error', handleErrors)
     .pipe($.pleeease(argv.prod === undefined ? pleaseOptions.development : pleaseOptions.production))
     .pipe($.size({title: 'main.css'}))
