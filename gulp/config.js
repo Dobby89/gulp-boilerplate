@@ -29,5 +29,26 @@ module.exports = {
         sourcemaps: true
       }
     }
+  },
+  iconFont: {
+    src: src + '/fonts/icons/temp/**/*.svg',
+    dist: dist + '/fonts',
+    copySrc: src+ '/fonts/icons/**/*.svg', // where the source icons are
+    copyDist: src + '/fonts/icons/temp', // where the icons get temporarily copied to while the font is generated
+    options: {
+      normalize: true,
+      fontName: 'iconfont',
+      appendCodepoints: true,
+      fontHeight: 1001 // fixes badly rendered icons
+    },
+    template: {
+      src: src + '/styles/fonts/_template.scss',
+      dist: src + '/styles/fonts/',
+      sassPartialName: '_iconfont.scss',
+      options: {
+        fontPath: '../fonts/', // path to font directory, relative to the production CSS file
+        className: 'iconfont' // what should the icon class be prefixed with? E.g.`[prefix]-chevron`
+      }
+    }
   }
 };
