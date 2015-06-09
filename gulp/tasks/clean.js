@@ -3,6 +3,12 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 
+// set up the config objects
+var config = require('../config');
+var configPaths = config.paths;
+var configIconFont = config.iconFont;
+var configSprite = config.sprite;
+
 /**
  * Clean output directories
  *
@@ -12,13 +18,9 @@ var $ = require('gulp-load-plugins')();
  */
 gulp.task('clean', function () {
   return gulp.src([
-    'dist',
-    'src/.sass-cache',
-    'src/styles/fonts/_iconfont.scss',
-    'src/fonts/iconfont.eot',
-    'src/fonts/iconfont.svg',
-    'src/fonts/iconfont.ttf',
-    'src/fonts/iconfont.woff',
-    'src/styles/sprite/_sprite.scss'
+    configPaths.dist,
+    configPaths + '/.sass-cache',
+    configIconFont.template.dist + configIconFont.template.sassPartialName,
+    configSprite.options.templateDest
   ]).pipe($.rimraf());
 });

@@ -2,6 +2,11 @@ var src = './src';
 var dist = './dist';
 
 module.exports = {
+  paths: {
+    src: src,
+    dist: dist
+  },
+
   styles: {
     src: src + '/styles/**/*.scss',
     dist: dist + '/styles',
@@ -30,6 +35,7 @@ module.exports = {
       }
     }
   },
+
   iconFont: {
     src: src + '/fonts/icons/temp/**/*.svg',
     dist: dist + '/fonts',
@@ -51,6 +57,7 @@ module.exports = {
       }
     }
   },
+
   sprite: {
     src: src + '/svg/icons/*.svg',
     svgDist: dist+ '/images/sprite.svg',
