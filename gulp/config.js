@@ -50,5 +50,21 @@ module.exports = {
         className: 'iconfont' // what should the icon class be prefixed with? E.g.`[prefix]-chevron`
       }
     }
+  },
+  sprite: {
+    src: src + '/svg/icons/*.svg',
+    svgDist: dist+ '/images/sprite.svg',
+    pngDist: dist+ '/images/sprite.png',
+    options: {
+      cssPathSvg: '../images/sprite.svg',
+      templateSrc: src + '/styles/sprite/_template.scss',
+      templateDest: src + '/styles/sprite/_sprite.scss',
+      // IE8 PNG fallback
+      cssPathNoSvg: '../images/sprite.png',
+      padding: 4, // spacing between icons
+      pixelBase: 16,
+      positioning: 'vertical', // vertical | horizontal | diagonal | packed
+      units: 'px'
+    }
   }
 };

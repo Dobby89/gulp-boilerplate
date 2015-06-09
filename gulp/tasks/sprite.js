@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var svgspritesheet = require('gulp-svg-spritesheet');
+var config = require('../config').sprite;
 var handleErrors = require('../helpers/handleErrors');
 
 /**
@@ -15,20 +16,11 @@ var handleErrors = require('../helpers/handleErrors');
  * Usage: $ gulp sprite
  */
 gulp.task('sprite', function () {
-  return gulp.src('src/svg/icons/*.svg')
-    .pipe(svgspritesheet({
-      cssPathSvg: '../images/sprite.svg',
-      templateSrc: 'src/styles/sprite/_template.scss',
-      templateDest: 'src/styles/sprite/_sprite.scss',
-
-      // IE8 PNG fallback
-      cssPathNoSvg: '../images/sprite.png',
-      padding: 4, // spacing between icons
-      pixelBase: 16,
-      positioning: 'vertical', // vertical | horizontal | diagonal | packed
-      units: 'px'
-    }))
-    .pipe(gulp.dest('dist/images/sprite.svg'))
+  return gulp.src(config.src)
+    .pipe(svgspritesheet(config.options))
+    .on('error', handleErrors)
+    .pipe(gulp.dest(config.svgDist))
     .pipe($.svg2png())
-    .pipe(gulp.dest('dist/images/sprite.png'));
+    .on('error', handleErrors)
+    .pipe(gulp.dest(config.pngDist));
 });
