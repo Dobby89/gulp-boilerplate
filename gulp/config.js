@@ -70,7 +70,7 @@ module.exports = {
       cssPathNoSvg: '../images/sprite.png',
       padding: 4, // spacing between icons
       pixelBase: 16,
-      positioning: 'vertical', // vertical | horizontal | diagonal | packed
+      positioning: 'packed', // vertical | horizontal | diagonal | packed
       units: 'px'
     }
   }
