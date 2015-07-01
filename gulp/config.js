@@ -12,7 +12,7 @@ module.exports = {
     dist: dist + '/styles',
     settings: {
       includePaths: ['./bower_components'],  // so the compiler knows to look for scss files within the bower directory as well
-      outputStyle: 'compressed', // nested, expanded, compact, compressed
+      outputStyle: 'nested', // nested, expanded, compact, compressed
       sourceComments: 'none' // 'none', 'normal' or 'map'
     },
     pleaseOptions: {
@@ -60,8 +60,12 @@ module.exports = {
 
   sprite: {
     src: src + '/svg/icons/*.svg',
-    svgDist: dist+ '/images/sprite.svg',
-    pngDist: dist+ '/images/sprite.png',
+    svgDist: dist + '/images/sprite.svg',
+    pngDist: dist + '/images/sprite.png',
+    retina: {
+      name: 'sprite@2x.png', // what to call the 2x PNG sprite
+      dist: dist + '/images' // where to save the 2x PNG sprite
+    },
     options: {
       cssPathSvg: '../images/sprite.svg',
       templateSrc: src + '/styles/sprite/_template.scss',

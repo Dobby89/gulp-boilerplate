@@ -1,8 +1,8 @@
 'use strict';
 
 var $ = require('jquery');
-require('html5shiv');
 require('jquery.uniform');
+require('layout.engine');
 
 // Custom select dropdowns
 $('select, .uniform-select').uniform();

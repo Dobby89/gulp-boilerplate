@@ -17,27 +17,31 @@ $icons: (
 
 %sprite {
     display: inline-block;
-    background-image: url("{{{cssPathSvg}}}");
     background-repeat: no-repeat;
-    background-size: {{width}}{{units}} {{height}}{{units}};
 
-    {{#cssPathNoSvg}}
-    .lt-ie9 & {
-        background-image: url("{{{cssPathNoSvg}}}");
+    background-image: url("{{{cssPathNoSvg}}}");
+
+    @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (   min--moz-device-pixel-ratio: 2),
+    only screen and (     -o-min-device-pixel-ratio: 2/1),
+    only screen and (        min-device-pixel-ratio: 2),
+    only screen and (                min-resolution: 192dpi),
+    only screen and (                min-resolution: 2dppx) {
+        background-image: url("../images/sprite@2x.png");
     }
-    {{/cssPathNoSvg}}
+
+    .svg.svg:not(.vendor-ie):not(.safari) & {
+        background-image: url("{{{cssPathSvg}}}");
+    }
+
+    .browser-android.browser-android.browser-android & {
+        background-image: url("../images/sprite@2x.png");
+    }
 }
 
-{{#sprites}}
-%sprite-{{fileName}} {
-    @extend %sprite;
-    background-position: {{x}}{{units}} {{y}}{{units}};
-    width: {{w}}{{units}};
-    height: {{h}}{{units}};
-}
-{{/sprites}}
-
-@mixin sprite($name: '', $width: false) {
+// retina sprite images
+@mixin sprite($name: '') {
 
     @if ($name != '') {
 
@@ -50,59 +54,58 @@ $icons: (
         $icon-pos-x: map-get($icon, 'x');
         $icon-pos-y: map-get($icon, 'y');
 
-        // get the natural height/width ratio of the icon
-        $icon-ratio: $icon-height / $icon-width;
-
-        $new-sprite-width: $sprite-width / ($icon-width / $width);
-        $new-sprite-height: $new-sprite-width / ($icon-width / $width);
-
-        $new-icon-width: $width;
-        $new-icon-height: $width * $icon-ratio;
-
-        $new-icon-pos-x: $icon-pos-x * $icon-ratio;
-        $new-icon-pos-y: $icon-pos-y * $icon-ratio;
-
         @extend %sprite;
-        background-size: #{$new-sprite-width}px;
-        background-position: #{$new-icon-pos-x}px #{$new-icon-pos-y}px;
-        width: #{$new-icon-width}px;
-        height: #{$new-icon-height}px;
+        background-position: #{$icon-pos-x}px #{$icon-pos-y}px;
+        background-size: #{$sprite-width}px #{$sprite-height}px;
+        width: #{$icon-width}px;
+        height: #{$icon-height}px;
     }
 }
 
-@mixin responsive-sprite($name){
+// Loop out a nice class for each sprite (.sprite-FILENAME)
+{{#sprites}}
+.sprite-{{fileName}} {
+    @include sprite('{{fileName}}');
+}
+{{/sprites}}
 
-    $sprite-width: map-get($sprite-sheet, 'w');
-    $sprite-height: map-get($sprite-sheet, 'h');
+@mixin responsive-sprite($name: ''){
 
-    $icon: map-get($icons, $name);
-    $icon-width: map-get($icon, 'w');
-    $icon-height: map-get($icon, 'h');
-    $icon-pos-x: map-get($icon, 'x');
-    $icon-pos-y: map-get($icon, 'y');
+    @if ($name != '') {
 
-    $pos-x: 0;
-    $pos-y: 0;
+        $sprite-width: map-get($sprite-sheet, 'w');
+        $sprite-height: map-get($sprite-sheet, 'h');
 
-    @if ($sprite-width - $icon-width) != 0 {
-        $pos-x: ($icon-pos-x * -1) / ($sprite-width - $icon-width);
+        $icon: map-get($icons, $name);
+        $icon-width: map-get($icon, 'w');
+        $icon-height: map-get($icon, 'h');
+        $icon-pos-x: map-get($icon, 'x');
+        $icon-pos-y: map-get($icon, 'y');
+
+        $bg-pos-x: 0;
+        $bg-pos-y: 0;
+
+        @if ($sprite-width - $icon-width) != 0 {
+            $bg-pos-x: ($icon-pos-x * -1) / ($sprite-width - $icon-width);
+        }
+
+        @if ($sprite-height - $icon-height) != 0 {
+            $bg-pos-y: ($icon-pos-y * -1) / ($sprite-height - $icon-height);
+        }
+
+        @extend %sprite;
+
+        display: block;
+        width: 100%;
+        height: 0;
+        padding-bottom: percentage($icon-height / $icon-width);
+        background-size: percentage($sprite-width / $icon-width) percentage($sprite-height / $icon-height);
+        background-position: percentage($bg-pos-x) percentage($bg-pos-y);
     }
-
-    @if ($sprite-height - $icon-height) != 0 {
-        $pos-y: ($icon-pos-y * -1) / ($sprite-height - $icon-height);
-    }
-
-    @extend %sprite;
-    width: 100%;
-    display: block;
-    height: 0;
-    padding-bottom: percentage($icon-height / $icon-width);
-    background-size: percentage($sprite-width / $icon-width) percentage($sprite-height / $icon-height);
-    background-position: percentage($pos-x) percentage($pos-y);
 }
 
 {{#sprites}}
-.sprite-{{fileName}} {
-    @include responsive-sprite({{fileName}});
+.responsive-sprite-{{fileName}} {
+    @include responsive-sprite('{{fileName}}');
 }
 {{/sprites}}

@@ -81,89 +81,31 @@ $icons: (
 
 %sprite {
     display: inline-block;
-    background-image: url("../images/sprite.svg");
     background-repeat: no-repeat;
-    background-size: 484px 393px;
 
-    .lt-ie9 & {
-        background-image: url("../images/sprite.png");
+    background-image: url("../images/sprite.png");
+
+    @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (   min--moz-device-pixel-ratio: 2),
+    only screen and (     -o-min-device-pixel-ratio: 2/1),
+    only screen and (        min-device-pixel-ratio: 2),
+    only screen and (                min-resolution: 192dpi),
+    only screen and (                min-resolution: 2dppx) {
+        background-image: url("../images/sprite@2x.png");
+    }
+
+    .svg.svg:not(.vendor-ie):not(.safari) & {
+        background-image: url("../images/sprite.svg");
+    }
+
+    .browser-android.browser-android.browser-android & {
+        background-image: url("../images/sprite@2x.png");
     }
 }
 
-%sprite-youtube {
-    @extend %sprite;
-    background-position: -4px -4px;
-    width: 157px;
-    height: 197px;
-}
-%sprite-uk-map-matrix {
-    @extend %sprite;
-    background-position: -165px -4px;
-    width: 151px;
-    height: 190px;
-}
-%sprite-trust-pilot {
-    @extend %sprite;
-    background-position: -4px -205px;
-    width: 186px;
-    height: 22px;
-}
-%sprite-checkbox-unchecked {
-    @extend %sprite;
-    background-position: -320px -4px;
-    width: 160px;
-    height: 159px;
-}
-%sprite-checkbox-checked {
-    @extend %sprite;
-    background-position: -4px -231px;
-    width: 160px;
-    height: 159px;
-}
-%sprite-info {
-    @extend %sprite;
-    background-position: -168px -231px;
-    width: 90px;
-    height: 90px;
-}
-%sprite-quote {
-    @extend %sprite;
-    background-position: -262px -231px;
-    width: 90px;
-    height: 90px;
-}
-%sprite-card-visa {
-    @extend %sprite;
-    background-position: -320px -167px;
-    width: 56px;
-    height: 37px;
-}
-%sprite-card-mastercard {
-    @extend %sprite;
-    background-position: -380px -167px;
-    width: 56px;
-    height: 37px;
-}
-%sprite-card-visa-debit {
-    @extend %sprite;
-    background-position: -356px -231px;
-    width: 56px;
-    height: 37px;
-}
-%sprite-card-paypal {
-    @extend %sprite;
-    background-position: -416px -231px;
-    width: 56px;
-    height: 37px;
-}
-%sprite-card-maestro {
-    @extend %sprite;
-    background-position: -356px -272px;
-    width: 56px;
-    height: 37px;
-}
-
-@mixin sprite($name: '', $width: false) {
+// retina sprite images
+@mixin sprite($name: '') {
 
     @if ($name != '') {
 
@@ -176,90 +118,120 @@ $icons: (
         $icon-pos-x: map-get($icon, 'x');
         $icon-pos-y: map-get($icon, 'y');
 
-        // get the natural height/width ratio of the icon
-        $icon-ratio: $icon-height / $icon-width;
-
-        $new-sprite-width: $sprite-width / ($icon-width / $width);
-        $new-sprite-height: $new-sprite-width / ($icon-width / $width);
-
-        $new-icon-width: $width;
-        $new-icon-height: $width * $icon-ratio;
-
-        $new-icon-pos-x: $icon-pos-x * $icon-ratio;
-        $new-icon-pos-y: $icon-pos-y * $icon-ratio;
-
         @extend %sprite;
-        background-size: #{$new-sprite-width}px;
-        background-position: #{$new-icon-pos-x}px #{$new-icon-pos-y}px;
-        width: #{$new-icon-width}px;
-        height: #{$new-icon-height}px;
+        background-position: #{$icon-pos-x}px #{$icon-pos-y}px;
+        background-size: #{$sprite-width}px #{$sprite-height}px;
+        width: #{$icon-width}px;
+        height: #{$icon-height}px;
     }
 }
 
-@mixin responsive-sprite($name){
-
-    $sprite-width: map-get($sprite-sheet, 'w');
-    $sprite-height: map-get($sprite-sheet, 'h');
-
-    $icon: map-get($icons, $name);
-    $icon-width: map-get($icon, 'w');
-    $icon-height: map-get($icon, 'h');
-    $icon-pos-x: map-get($icon, 'x');
-    $icon-pos-y: map-get($icon, 'y');
-
-    $pos-x: 0;
-    $pos-y: 0;
-
-    @if ($sprite-width - $icon-width) != 0 {
-        $pos-x: ($icon-pos-x * -1) / ($sprite-width - $icon-width);
-    }
-
-    @if ($sprite-height - $icon-height) != 0 {
-        $pos-y: ($icon-pos-y * -1) / ($sprite-height - $icon-height);
-    }
-
-    @extend %sprite;
-    width: 100%;
-    display: block;
-    height: 0;
-    padding-bottom: percentage($icon-height / $icon-width);
-    background-size: percentage($sprite-width / $icon-width) percentage($sprite-height / $icon-height);
-    background-position: percentage($pos-x) percentage($pos-y);
-}
-
+// Loop out a nice class for each sprite (.sprite-FILENAME)
 .sprite-youtube {
-    @include responsive-sprite(youtube);
+    @include sprite('youtube');
 }
 .sprite-uk-map-matrix {
-    @include responsive-sprite(uk-map-matrix);
+    @include sprite('uk-map-matrix');
 }
 .sprite-trust-pilot {
-    @include responsive-sprite(trust-pilot);
+    @include sprite('trust-pilot');
 }
 .sprite-checkbox-unchecked {
-    @include responsive-sprite(checkbox-unchecked);
+    @include sprite('checkbox-unchecked');
 }
 .sprite-checkbox-checked {
-    @include responsive-sprite(checkbox-checked);
+    @include sprite('checkbox-checked');
 }
 .sprite-info {
-    @include responsive-sprite(info);
+    @include sprite('info');
 }
 .sprite-quote {
-    @include responsive-sprite(quote);
+    @include sprite('quote');
 }
 .sprite-card-visa {
-    @include responsive-sprite(card-visa);
+    @include sprite('card-visa');
 }
 .sprite-card-mastercard {
-    @include responsive-sprite(card-mastercard);
+    @include sprite('card-mastercard');
 }
 .sprite-card-visa-debit {
-    @include responsive-sprite(card-visa-debit);
+    @include sprite('card-visa-debit');
 }
 .sprite-card-paypal {
-    @include responsive-sprite(card-paypal);
+    @include sprite('card-paypal');
 }
 .sprite-card-maestro {
-    @include responsive-sprite(card-maestro);
+    @include sprite('card-maestro');
+}
+
+@mixin responsive-sprite($name: ''){
+
+    @if ($name != '') {
+
+        $sprite-width: map-get($sprite-sheet, 'w');
+        $sprite-height: map-get($sprite-sheet, 'h');
+
+        $icon: map-get($icons, $name);
+        $icon-width: map-get($icon, 'w');
+        $icon-height: map-get($icon, 'h');
+        $icon-pos-x: map-get($icon, 'x');
+        $icon-pos-y: map-get($icon, 'y');
+
+        $bg-pos-x: 0;
+        $bg-pos-y: 0;
+
+        @if ($sprite-width - $icon-width) != 0 {
+            $bg-pos-x: ($icon-pos-x * -1) / ($sprite-width - $icon-width);
+        }
+
+        @if ($sprite-height - $icon-height) != 0 {
+            $bg-pos-y: ($icon-pos-y * -1) / ($sprite-height - $icon-height);
+        }
+
+        @extend %sprite;
+
+        display: block;
+        width: 100%;
+        height: 0;
+        padding-bottom: percentage($icon-height / $icon-width);
+        background-size: percentage($sprite-width / $icon-width) percentage($sprite-height / $icon-height);
+        background-position: percentage($bg-pos-x) percentage($bg-pos-y);
+    }
+}
+
+.responsive-sprite-youtube {
+    @include responsive-sprite('youtube');
+}
+.responsive-sprite-uk-map-matrix {
+    @include responsive-sprite('uk-map-matrix');
+}
+.responsive-sprite-trust-pilot {
+    @include responsive-sprite('trust-pilot');
+}
+.responsive-sprite-checkbox-unchecked {
+    @include responsive-sprite('checkbox-unchecked');
+}
+.responsive-sprite-checkbox-checked {
+    @include responsive-sprite('checkbox-checked');
+}
+.responsive-sprite-info {
+    @include responsive-sprite('info');
+}
+.responsive-sprite-quote {
+    @include responsive-sprite('quote');
+}
+.responsive-sprite-card-visa {
+    @include responsive-sprite('card-visa');
+}
+.responsive-sprite-card-mastercard {
+    @include responsive-sprite('card-mastercard');
+}
+.responsive-sprite-card-visa-debit {
+    @include responsive-sprite('card-visa-debit');
+}
+.responsive-sprite-card-paypal {
+    @include responsive-sprite('card-paypal');
+}
+.responsive-sprite-card-maestro {
+    @include responsive-sprite('card-maestro');
 }
