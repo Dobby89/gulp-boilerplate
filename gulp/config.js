@@ -12,7 +12,7 @@ module.exports = {
     dist: dist + '/styles',
     settings: {
       includePaths: ['./bower_components'],  // so the compiler knows to look for scss files within the bower directory as well
-      outputStyle: 'nested', // nested, expanded, compact, compressed
+      outputStyle: 'compressed', // nested, expanded, compact, compressed
       sourceComments: 'none' // 'none', 'normal' or 'map'
     },
     pleaseOptions: {

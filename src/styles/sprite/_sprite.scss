@@ -95,10 +95,14 @@ $icons: (
         background-image: url("../images/sprite@2x.png");
     }
 
+    // you need some browser capability and user agent detection for the following:
+
+    // only use the SVG sprite if the browser supports SVGs
     .svg.svg:not(.vendor-ie):not(.safari) & {
-        background-image: url("../images/sprite.svg");
+        background-image: none, url("../images/sprite.svg");
     }
 
+    // older android browsers don't seem to support SVG
     .browser-android.browser-android.browser-android & {
         background-image: url("../images/sprite@2x.png");
     }
