@@ -18,8 +18,11 @@ var runSequence = require('run-sequence');
  */
 gulp.task('sprite', function(callback) {
   runSequence(
+    ['cleanTempSvgIcons'],
+    ['copyTempSvgIcons'],
     ['sprite-normal'],
     ['sprite-retina'],
+    ['cleanTempSvgIcons'],
     callback);
 });
 
@@ -38,4 +41,14 @@ gulp.task('sprite-retina', function () {
     .pipe($.svg2png([2]))
     .pipe($.rename(config.retina.name))
     .pipe(gulp.dest(config.retina.dist));
+});
+
+gulp.task('cleanTempSvgIcons', function(){
+  return gulp.src(config.copyDist)
+    .pipe($.rimraf());
+});
+
+gulp.task('copyTempSvgIcons', function(){
+  return gulp.src(config.copySrc)
+    .pipe(gulp.dest(config.copyDist));
 });

@@ -59,7 +59,9 @@ module.exports = {
   },
 
   sprite: {
-    src: src + '/svg/icons/*.svg',
+    src: src + '/svg/icons/temp/**/*.svg',
+    copySrc: src + '/svg/icons/**/*.svg', // where the source icons are
+    copyDist: src + '/svg/icons/temp', // where the icons get temporarily copied to while the sprite is generated
     svgDist: dist + '/images/sprite.svg',
     pngDist: dist + '/images/sprite.png',
     retina: {
