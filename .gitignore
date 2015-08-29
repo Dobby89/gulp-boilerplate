@@ -8,3 +8,5 @@ src/bower_components
 dist
 .sass-cache
 src/.sass-cache
+_iconfont.scss
+_sprite.scss
