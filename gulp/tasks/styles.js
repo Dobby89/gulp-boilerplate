@@ -17,8 +17,8 @@ var pleaseOptions = config.pleaseOptions;
  */
 gulp.task('styles', function () {
   return gulp.src(config.src)
-    .pipe($.sass.sync(config.settings)
-    .on('error', $.sass.logError))
+    .pipe($.sass.sync(config.settings))
+    .on('error', $.sass.logError)
     .on('error', handleErrors)
     .pipe($.pleeease(argv.prod === undefined ? pleaseOptions.development : pleaseOptions.production))
     .pipe($.size({title: 'Styles complete'}))
